@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Terminal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="terminal-controls">
+                <span class="control close"></span>
+                <span class="control minimize"></span>
+                <span class="control maximize"></span>
+            </div>
+            <div class="terminal-title">portfolio@terminal:~$</div>
+        </div>
+        
+        <div class="terminal-body">
+            <div class="command-history" id="commandHistory"></div>
+            
+            <div class="navigation">
+                <div class="nav-item active" data-page="home">$ cd home</div>
+                <div class="nav-item" data-page="about">$ cd about</div>
+                <div class="nav-item" data-page="projects">$ cd projects</div>
+                <div class="nav-item" data-page="skills">$ cd skills</div>
+                <div class="nav-item" data-page="contact">$ cd contact</div>
+            </div>
+            
+            <div class="content-area">
+                <div class="page active" id="home">
+                    <div class="page-content">
+                        <pre class="ascii-art">
+ ____   ___  ____ _____ _____ ___  _     ___ ___  
+|  _ \ / _ \|  _ \_   _|  ___/ _ \| |   |_ _/ _ \ 
+| |_) | | | | |_) || | | |_ | | | | |    | | | | |
+|  __/| |_| |  _ < | | |  _|| |_| | |___ | | |_| |
+|_|    \___/|_| \_\|_| |_|   \___/|_____|___\___/
+                        </pre>
+                        <p class="welcome">Welcome to my interactive portfolio terminal!</p>
+                        <p>Use the navigation commands above to explore different sections.</p>
+                        <p>Type 'help' for available commands or click on the menu items.</p>
+                    </div>
+                </div>
+                
+                <div class="page" id="about">
+                    <div class="page-content">
+                        <h2>$ cat about.txt</h2>
+                        <div class="file-content">
+                            <p>Name: [Your Name]</p>
+                            <p>Role: Full Stack Developer</p>
+                            <p>Location: [Your Location]</p>
+                            <p>Experience: X years in web development</p>
+                            <br>
+                            <p>I'm a passionate developer who loves creating interactive</p>
+                            <p>and user-friendly web applications. I enjoy working with</p>
+                            <p>modern technologies and solving complex problems.</p>
+                            <br>
+                            <p>My interests include:</p>
+                            <p>- Web Development</p>
+                            <p>- User Experience Design</p>
+                            <p>- Open Source Projects</p>
+                            <p>- Continuous Learning</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="page" id="projects">
+                    <div class="page-content">
+                        <h2>$ ls -la projects/</h2>
+                        <div class="project-list">
+                            <div class="project-item">
+                                <span class="permissions">drwxr-xr-x</span>
+                                <span class="size">4.2K</span>
+                                <span class="date">Jan 15</span>
+                                <span class="name">e-commerce-app/</span>
+                                <p class="description">Full-stack e-commerce platform with React and Node.js</p>
+                            </div>
+                            <div class="project-item">
+                                <span class="permissions">drwxr-xr-x</span>
+                                <span class="size">2.1K</span>
+                                <span class="date">Dec 22</span>
+                                <span class="name">weather-dashboard/</span>
+                                <p class="description">Real-time weather application with API integration</p>
+                            </div>
+                            <div class="project-item">
+                                <span class="permissions">drwxr-xr-x</span>
+                                <span class="size">1.8K</span>
+                                <span class="date">Nov 10</span>
+                                <span class="name">task-manager/</span>
+                                <p class="description">Productivity app with drag-and-drop functionality</p>
+                            </div>
+                            <div class="project-item">
+                                <span class="permissions">drwxr-xr-x</span>
+                                <span class="size">3.5K</span>
+                                <span class="date">Oct 05</span>
+                                <span class="name">portfolio-terminal/</span>
+                                <p class="description">This interactive terminal-style portfolio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="page" id="skills">
+                    <div class="page-content">
+                        <h2>$ cat skills.json</h2>
+                        <div class="json-content">
+                            <pre>{
+  "frontend": {
+    "languages": ["HTML5", "CSS3", "JavaScript", "TypeScript"],
+    "frameworks": ["React", "Vue.js", "Angular"],
+    "tools": ["Webpack", "Vite", "Sass", "Tailwind CSS"]
+  },
+  "backend": {
+    "languages": ["Node.js", "Python", "PHP"],
+    "frameworks": ["Express", "Django", "Laravel"],
+    "databases": ["MongoDB", "PostgreSQL", "MySQL"]
+  },
+  "devops": {
+    "tools": ["Docker", "Git", "GitHub Actions"],
+    "cloud": ["AWS", "Heroku", "Netlify"]
+  },
+  "soft_skills": [
+    "Problem Solving",
+    "Team Collaboration", 
+    "Communication",
+    "Project Management"
+  ]
+}</pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="page" id="contact">
+                    <div class="page-content">
+                        <h2>$ cat contact.sh</h2>
+                        <div class="contact-script">
+                            <pre>#!/bin/bash
+
+echo "Contact Information:"
+echo "==================="
+echo ""
+echo "Email: your.email@example.com"
+echo "GitHub: https://github.com/yourusername"
+echo "LinkedIn: https://linkedin.com/in/yourprofile"
+echo "Website: https://yourwebsite.com"
+echo ""
+echo "Available for:"
+echo "- Full-time opportunities"
+echo "- Freelance projects"
+echo "- Collaboration"
+echo ""
+echo "Response time: Usually within 24 hours"
+echo ""
+echo "$ ./send_message.sh --to=your.email@example.com"</pre>
+                            
+                            <div class="contact-form">
+                                <h3>$ nano message.txt</h3>
+                                <form class="terminal-form">
+                                    <div class="form-group">
+                                        <label>Name:</label>
+                                        <input type="text" placeholder="Enter your name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email:</label>
+                                        <input type="email" placeholder="your.email@example.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Message:</label>
+                                        <textarea placeholder="Type your message here..."></textarea>
+                                    </div>
+                                    <button type="submit">$ send --message</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="command-prompt">
+                <span class="prompt">portfolio@terminal:~$ </span>
+                <span class="cursor">|</span>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
