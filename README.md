@@ -39,7 +39,6 @@ console-portfolio/
 │   └── images/             # Imágenes y recursos gráficos
 ├── docs/                   # Documentación adicional
 ├── index.html              # Estructura principal del portfolio
-├── package.json            # Configuración del proyecto
 ├── .gitignore             # Archivos ignorados por Git
 ├── LICENSE                # Licencia MIT
 └── README.md              # Este archivo

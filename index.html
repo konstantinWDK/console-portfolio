@@ -15,6 +15,9 @@
                 <span class="control maximize"></span>
             </div>
             <div class="terminal-title">portfolio@terminal:~$</div>
+            <div class="theme-toggle" id="themeToggle">
+                <span class="theme-icon">🌙</span>
+            </div>
         </div>
         
         <div class="terminal-body">
@@ -39,8 +42,16 @@
 |_|    \___/|_| \_\|_| |_|   \___/|_____|___\___/
                         </pre>
                         <p class="welcome">Welcome to my interactive portfolio terminal!</p>
-                        <p>Use the navigation commands above to explore different sections.</p>
-                        <p>Type 'help' for available commands or click on the menu items.</p>
+                        <p class="system-info">System: Ubuntu 22.04 LTS | User: konstantinWDK | Shell: /bin/bash</p>
+                        <p class="status-line">Last login: $(date) on terminal</p>
+                        <br>
+                        <p class="help-text">📋 Available commands:</p>
+                        <p class="command-list">• cd [section] - Navigate to section</p>
+                        <p class="command-list">• help - Show this help</p>
+                        <p class="command-list">• clear - Clear terminal</p>
+                        <p class="command-list">• theme - Toggle light/dark mode</p>
+                        <br>
+                        <p class="tip">💡 Pro tip: Use keyboard shortcuts 1-5 to navigate quickly!</p>
                     </div>
                 </div>
                 
@@ -48,55 +59,141 @@
                     <div class="page-content">
                         <h2>$ cat about.txt</h2>
                         <div class="file-content">
-                            <p>Name: [Your Name]</p>
-                            <p>Role: Full Stack Developer</p>
-                            <p>Location: [Your Location]</p>
-                            <p>Experience: X years in web development</p>
-                            <br>
-                            <p>I'm a passionate developer who loves creating interactive</p>
-                            <p>and user-friendly web applications. I enjoy working with</p>
-                            <p>modern technologies and solving complex problems.</p>
-                            <br>
-                            <p>My interests include:</p>
-                            <p>- Web Development</p>
-                            <p>- User Experience Design</p>
-                            <p>- Open Source Projects</p>
-                            <p>- Continuous Learning</p>
+                            <div class="file-header">
+                                <span class="file-info">-rw-r--r-- 1 konstantinWDK staff 2.4K $(date '+%b %d %H:%M') about.txt</span>
+                            </div>
+                            <div class="file-body">
+                                <p class="variable">NAME="konstantinWDK"</p>
+                                <p class="variable">ROLE="Full Stack Developer & UI/UX Enthusiast"</p>
+                                <p class="variable">LOCATION="Earth 🌍"</p>
+                                <p class="variable">EXPERIENCE="5+ años transformando ideas en código"</p>
+                                <p class="variable">STATUS="Disponible para proyectos increíbles"</p>
+                                <br>
+                                <p class="comment"># Sobre mí</p>
+                                <p>Soy un desarrollador apasionado por crear experiencias digitales</p>
+                                <p>únicas y funcionales. Me especializo en desarrollo full-stack</p>
+                                <p>con un enfoque especial en la experiencia del usuario.</p>
+                                <br>
+                                <p class="comment"># Filosofía de desarrollo</p>
+                                <p>"El código limpio no es solo funcional, es arte que otros</p>
+                                <p>desarrolladores pueden leer como una historia bien escrita."</p>
+                                <br>
+                                <p class="comment"># Intereses actuales</p>
+                                <p class="interest">→ Arquitectura de aplicaciones escalables</p>
+                                <p class="interest">→ Optimización de rendimiento web</p>
+                                <p class="interest">→ Contribuciones open source</p>
+                                <p class="interest">→ Mentoring y comunidad tech</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="page" id="projects">
                     <div class="page-content">
-                        <h2>$ ls -la projects/</h2>
+                        <h2>$ find projects/ -type f -name "*.md" | head -10</h2>
                         <div class="project-list">
-                            <div class="project-item">
-                                <span class="permissions">drwxr-xr-x</span>
-                                <span class="size">4.2K</span>
-                                <span class="date">Jan 15</span>
-                                <span class="name">e-commerce-app/</span>
-                                <p class="description">Full-stack e-commerce platform with React and Node.js</p>
+                            <div class="project-item" data-tech="react,node,mongodb" data-status="production">
+                                <div class="project-header">
+                                    <span class="permissions">drwxr-xr-x</span>
+                                    <span class="size">156K</span>
+                                    <span class="date">2024-01</span>
+                                    <span class="name">ecommerce-platform/</span>
+                                    <span class="status status-live">🟢 LIVE</span>
+                                </div>
+                                <div class="project-body">
+                                    <p class="description">🛒 Plataforma de e-commerce full-stack con carrito en tiempo real</p>
+                                    <div class="tech-stack">
+                                        <span class="tech">React</span>
+                                        <span class="tech">Node.js</span>
+                                        <span class="tech">MongoDB</span>
+                                        <span class="tech">Stripe</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="#" class="link">🔗 Demo</a>
+                                        <a href="#" class="link">📂 GitHub</a>
+                                        <span class="stats">⭐ 47 stars | 🍴 12 forks</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="project-item">
-                                <span class="permissions">drwxr-xr-x</span>
-                                <span class="size">2.1K</span>
-                                <span class="date">Dec 22</span>
-                                <span class="name">weather-dashboard/</span>
-                                <p class="description">Real-time weather application with API integration</p>
+                            
+                            <div class="project-item" data-tech="vue,python,postgresql" data-status="development">
+                                <div class="project-header">
+                                    <span class="permissions">drwxr-xr-x</span>
+                                    <span class="size">89K</span>
+                                    <span class="date">2024-02</span>
+                                    <span class="name">task-automation-suite/</span>
+                                    <span class="status status-dev">🟡 DEV</span>
+                                </div>
+                                <div class="project-body">
+                                    <p class="description">🤖 Suite de automatización de tareas con IA integrada</p>
+                                    <div class="tech-stack">
+                                        <span class="tech">Vue.js</span>
+                                        <span class="tech">Python</span>
+                                        <span class="tech">PostgreSQL</span>
+                                        <span class="tech">OpenAI</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="#" class="link">🚧 Preview</a>
+                                        <a href="#" class="link">📂 GitHub</a>
+                                        <span class="stats">⭐ 23 stars | 🍴 5 forks</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="project-item">
-                                <span class="permissions">drwxr-xr-x</span>
-                                <span class="size">1.8K</span>
-                                <span class="date">Nov 10</span>
-                                <span class="name">task-manager/</span>
-                                <p class="description">Productivity app with drag-and-drop functionality</p>
+                            
+                            <div class="project-item" data-tech="javascript,css,html" data-status="production">
+                                <div class="project-header">
+                                    <span class="permissions">drwxr-xr-x</span>
+                                    <span class="size">12K</span>
+                                    <span class="date">2024-03</span>
+                                    <span class="name">console-portfolio/</span>
+                                    <span class="status status-live">🟢 LIVE</span>
+                                </div>
+                                <div class="project-body">
+                                    <p class="description">💻 Portfolio interactivo estilo terminal (¡este mismo!)</p>
+                                    <div class="tech-stack">
+                                        <span class="tech">Vanilla JS</span>
+                                        <span class="tech">CSS3</span>
+                                        <span class="tech">HTML5</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="#" class="link">🔗 Demo</a>
+                                        <a href="https://github.com/konstantinWDK/console-portfolio" class="link">📂 GitHub</a>
+                                        <span class="stats">⭐ 15 stars | 🍴 3 forks</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="project-item">
-                                <span class="permissions">drwxr-xr-x</span>
-                                <span class="size">3.5K</span>
-                                <span class="date">Oct 05</span>
-                                <span class="name">portfolio-terminal/</span>
-                                <p class="description">This interactive terminal-style portfolio</p>
+                            
+                            <div class="project-item" data-tech="react,typescript,firebase" data-status="archived">
+                                <div class="project-header">
+                                    <span class="permissions">drwxr-xr-x</span>
+                                    <span class="size">67K</span>
+                                    <span class="date">2023-11</span>
+                                    <span class="name">weather-insights/</span>
+                                    <span class="status status-archived">⚪ ARCHIVED</span>
+                                </div>
+                                <div class="project-body">
+                                    <p class="description">🌤️ Dashboard meteorológico con predicciones ML</p>
+                                    <div class="tech-stack">
+                                        <span class="tech">React</span>
+                                        <span class="tech">TypeScript</span>
+                                        <span class="tech">Firebase</span>
+                                        <span class="tech">D3.js</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="#" class="link">📂 GitHub</a>
+                                        <span class="stats">⭐ 31 stars | 🍴 8 forks</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-filters">
+                            <p class="filter-title">$ grep -r "tech:" projects/ | sort</p>
+                            <div class="filter-buttons">
+                                <button class="filter-btn active" data-filter="all">Todos</button>
+                                <button class="filter-btn" data-filter="production">🟢 Live</button>
+                                <button class="filter-btn" data-filter="development">🟡 Dev</button>
+                                <button class="filter-btn" data-filter="archived">⚪ Archived</button>
                             </div>
                         </div>
                     </div>
@@ -104,74 +201,199 @@
                 
                 <div class="page" id="skills">
                     <div class="page-content">
-                        <h2>$ cat skills.json</h2>
+                        <h2>$ cat skills.json | jq '.' --color-output</h2>
                         <div class="json-content">
-                            <pre>{
-  "frontend": {
-    "languages": ["HTML5", "CSS3", "JavaScript", "TypeScript"],
-    "frameworks": ["React", "Vue.js", "Angular"],
-    "tools": ["Webpack", "Vite", "Sass", "Tailwind CSS"]
-  },
-  "backend": {
-    "languages": ["Node.js", "Python", "PHP"],
-    "frameworks": ["Express", "Django", "Laravel"],
-    "databases": ["MongoDB", "PostgreSQL", "MySQL"]
-  },
-  "devops": {
-    "tools": ["Docker", "Git", "GitHub Actions"],
-    "cloud": ["AWS", "Heroku", "Netlify"]
-  },
-  "soft_skills": [
-    "Problem Solving",
-    "Team Collaboration", 
-    "Communication",
-    "Project Management"
-  ]
-}</pre>
+                            <div class="skill-category">
+                                <h3 class="category-title">🎨 Frontend Development</h3>
+                                <div class="skill-grid">
+                                    <div class="skill-item expert">
+                                        <span class="skill-name">JavaScript</span>
+                                        <div class="skill-bar"><div class="skill-progress" data-level="95"></div></div>
+                                        <span class="skill-years">5+ años</span>
+                                    </div>
+                                    <div class="skill-item expert">
+                                        <span class="skill-name">React</span>
+                                        <div class="skill-bar"><div class="skill-progress" data-level="90"></div></div>
+                                        <span class="skill-years">4+ años</span>
+                                    </div>
+                                    <div class="skill-item advanced">
+                                        <span class="skill-name">Vue.js</span>
+                                        <div class="skill-bar"><div class="skill-progress" data-level="85"></div></div>
+                                        <span class="skill-years">3+ años</span>
+                                    </div>
+                                    <div class="skill-item expert">
+                                        <span class="skill-name">CSS3/Sass</span>
+                                        <div class="skill-bar"><div class="skill-progress" data-level="92"></div></div>
+                                        <span class="skill-years">5+ años</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <h3 class="category-title">🛠️ Backend Development</h3>
+                                <div class="skill-grid">
+                                    <div class="skill-item expert">
+                                        <span class="skill-name">Node.js</span>
+                                        <div class="skill-bar"><div class="skill-progress" data-level="88"></div></div>
+                                        <span class="skill-years">4+ años</span>
+                                    </div>
+                                    <div class="skill-item advanced">
+                                        <span class="skill-name">Python</span>
+                                        <div class="skill-bar"><div class="skill-progress" data-level="82"></div></div>
+                                        <span class="skill-years">3+ años</span>
+                                    </div>
+                                    <div class="skill-item expert">
+                                        <span class="skill-name">MongoDB</span>
+                                        <div class="skill-bar"><div class="skill-progress" data-level="87"></div></div>
+                                        <span class="skill-years">4+ años</span>
+                                    </div>
+                                    <div class="skill-item advanced">
+                                        <span class="skill-name">PostgreSQL</span>
+                                        <div class="skill-bar"><div class="skill-progress" data-level="80"></div></div>
+                                        <span class="skill-years">2+ años</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <h3 class="category-title">🚀 DevOps & Tools</h3>
+                                <div class="skill-grid">
+                                    <div class="skill-item expert">
+                                        <span class="skill-name">Git</span>
+                                        <div class="skill-bar"><div class="skill-progress" data-level="93"></div></div>
+                                        <span class="skill-years">5+ años</span>
+                                    </div>
+                                    <div class="skill-item advanced">
+                                        <span class="skill-name">Docker</span>
+                                        <div class="skill-bar"><div class="skill-progress" data-level="78"></div></div>
+                                        <span class="skill-years">2+ años</span>
+                                    </div>
+                                    <div class="skill-item intermediate">
+                                        <span class="skill-name">AWS</span>
+                                        <div class="skill-bar"><div class="skill-progress" data-level="70"></div></div>
+                                        <span class="skill-years">1+ año</span>
+                                    </div>
+                                    <div class="skill-item expert">
+                                        <span class="skill-name">VS Code</span>
+                                        <div class="skill-bar"><div class="skill-progress" data-level="98"></div></div>
+                                        <span class="skill-years">5+ años</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="terminal-command">
+                                <p>$ echo "Soft Skills:" && cat soft_skills.txt</p>
+                                <div class="soft-skills">
+                                    <span class="soft-skill">🧠 Problem Solving</span>
+                                    <span class="soft-skill">👥 Team Leadership</span>
+                                    <span class="soft-skill">💬 Communication</span>
+                                    <span class="soft-skill">📈 Project Management</span>
+                                    <span class="soft-skill">🎯 Attention to Detail</span>
+                                    <span class="soft-skill">🚀 Innovation</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="page" id="contact">
                     <div class="page-content">
-                        <h2>$ cat contact.sh</h2>
+                        <h2>$ cat contact.sh && chmod +x contact.sh</h2>
                         <div class="contact-script">
-                            <pre>#!/bin/bash
+                            <div class="script-header">
+                                <span class="file-info">-rwxr-xr-x 1 konstantinWDK staff 1.2K $(date '+%b %d %H:%M') contact.sh</span>
+                            </div>
+                            <pre class="script-content">#!/bin/bash
+# Contact Script v2.0
+# Last updated: $(date)
 
-echo "Contact Information:"
-echo "==================="
-echo ""
-echo "Email: your.email@example.com"
-echo "GitHub: https://github.com/yourusername"
-echo "LinkedIn: https://linkedin.com/in/yourprofile"
-echo "Website: https://yourwebsite.com"
-echo ""
-echo "Available for:"
-echo "- Full-time opportunities"
-echo "- Freelance projects"
-echo "- Collaboration"
-echo ""
-echo "Response time: Usually within 24 hours"
-echo ""
-echo "$ ./send_message.sh --to=your.email@example.com"</pre>
+set -e  # Exit on any error
+
+echo -e "[32m█████████████████████████[0m"
+echo -e "[32m█[0m    📬 CONTACT INFO    [32m█[0m"
+echo -e "[32m█████████████████████████[0m"
+echo
+
+# Primary contact methods
+echo -e "📧 Email......: konstantin.dev@example.com"
+echo -e "🐈 GitHub.....: https://github.com/konstantinWDK"
+echo -e "💼 LinkedIn...: https://linkedin.com/in/konstantinwdk"
+echo -e "🌐 Portfolio..: https://konstantinwdk.github.io"
+echo -e "📱 Discord....: konstantinWDK#1337"
+echo
+
+# Status and availability
+echo -e "[33m⚙️  STATUS ACTUAL:[0m"
+echo -e "   🟢 Disponible para proyectos"
+echo -e "   🟡 Buscando oportunidades remotas"
+echo -e "   ⚪ Open source contributions"
+echo
+
+# Response time and timezone
+echo -e "[36m⏰ ZONA HORARIA: UTC-3 (Buenos Aires)[0m"
+echo -e "[36m⏱️  TIEMPO RESPUESTA: < 24 horas[0m"
+echo
+
+# Interests
+echo -e "[35m🎯 INTERESADO EN:[0m"
+echo -e "   • Full-stack development"
+echo -e "   • Proyectos de impacto social"
+echo -e "   • Colaboraciones open source"
+echo -e "   • Mentoring y tech talks"
+echo
+
+echo -e "[32m✓ Script ejecutado correctamente[0m"
+echo "$ ./send_message.sh --interactive --to=konstantin.dev@example.com"</pre>
                             
                             <div class="contact-form">
-                                <h3>$ nano message.txt</h3>
-                                <form class="terminal-form">
-                                    <div class="form-group">
-                                        <label>Name:</label>
-                                        <input type="text" placeholder="Enter your name">
+                                <h3>$ vim message.txt --insert-mode</h3>
+                                <div class="vim-interface">
+                                    <div class="vim-status">
+                                        <span class="mode">-- INSERT --</span>
+                                        <span class="file-info">"message.txt" [New File]</span>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Email:</label>
-                                        <input type="email" placeholder="your.email@example.com">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Message:</label>
-                                        <textarea placeholder="Type your message here..."></textarea>
-                                    </div>
-                                    <button type="submit">$ send --message</button>
-                                </form>
+                                    <form class="terminal-form">
+                                        <div class="form-group">
+                                            <label class="field-label">📝 FROM:</label>
+                                            <input type="text" placeholder="Tu nombre completo" class="terminal-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="field-label">📧 EMAIL:</label>
+                                            <input type="email" placeholder="tu.email@ejemplo.com" class="terminal-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="field-label">💬 SUBJECT:</label>
+                                            <select class="terminal-select">
+                                                <option>Colaboración en proyecto</option>
+                                                <option>Oportunidad laboral</option>
+                                                <option>Consulta técnica</option>
+                                                <option>Otro</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="field-label">📝 MESSAGE:</label>
+                                            <textarea placeholder="Escribe tu mensaje aquí...
+Puedes incluir:
+- Detalles del proyecto
+- Tecnologías involucradas
+- Timeline estimado
+- Presupuesto (si aplica)" class="terminal-textarea"></textarea>
+                                        </div>
+                                        <div class="form-actions">
+                                            <button type="submit" class="send-btn">
+                                                <span class="btn-icon">🚀</span>
+                                                $ send --message --priority=high
+                                            </button>
+                                            <button type="reset" class="clear-btn">
+                                                <span class="btn-icon">🗑️</span>
+                                                $ clear --all
+                                            </button>
+                                        </div>
+                                        <div class="form-footer">
+                                            <p class="privacy-note">🔒 Tu información está protegida y no será compartida</p>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

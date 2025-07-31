@@ -1,285 +1,157 @@
-class TerminalPortfolio {
-    constructor() {
-        this.commandHistory = document.getElementById('commandHistory');
-        this.navItems = document.querySelectorAll('.nav-item');
-        this.pages = document.querySelectorAll('.page');
-        this.currentPage = 'home';
-        this.commandQueue = [];
-        this.isExecuting = false;
-        
-        this.init();
-    }
+// Simple Terminal Portfolio - Minimal Version
+console.log('🚀 Script loading...');
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🎯 DOM loaded, starting initialization...');
     
-    init() {
-        this.addEventListeners();
-        this.addInitialCommand();
-        this.startCursorBlink();
-    }
+    // Get elements
+    const navItems = document.querySelectorAll('.nav-item');
+    const pages = document.querySelectorAll('.page');
+    const themeToggle = document.getElementById('themeToggle');
+    const commandHistory = document.getElementById('commandHistory');
     
-    addEventListeners() {
-        this.navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                const page = e.target.getAttribute('data-page');
-                this.navigateToPage(page);
-            });
-        });
+    console.log('📊 Found elements:', {
+        navItems: navItems.length,
+        pages: pages.length,
+        themeToggle: !!themeToggle,
+        commandHistory: !!commandHistory
+    });
+    
+    // Current state
+    let currentPage = 'home';
+    let currentTheme = localStorage.getItem('portfolio-theme') || 'dark';
+    
+    // Apply theme
+    function applyTheme() {
+        if (currentTheme === 'light') {
+            document.body.setAttribute('data-theme', 'light');
+        } else {
+            document.body.removeAttribute('data-theme');
+        }
         
-        // Add keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            this.handleKeyPress(e);
-        });
-        
-        // Add form submission handler
-        const form = document.querySelector('.terminal-form');
-        if (form) {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.handleFormSubmit();
-            });
+        if (themeToggle) {
+            const icon = themeToggle.querySelector('.theme-icon');
+            if (icon) {
+                icon.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+            }
         }
     }
     
-    addInitialCommand() {
-        this.addCommandToHistory('portfolio@terminal:~$', 'clear && echo "Welcome to Terminal Portfolio"', 'Terminal initialized successfully!');
-        this.addCommandToHistory('portfolio@terminal:~$', 'ls -la', 'home/ about/ projects/ skills/ contact/');
-    }
-    
-    navigateToPage(pageName) {
-        if (this.currentPage === pageName || this.isExecuting) return;
+    // Add command to history
+    function addCommand(command, output) {
+        if (!commandHistory) return;
         
-        const command = `cd ${pageName}`;
-        const output = this.getPageOutput(pageName);
-        
-        this.addCommandToHistory('portfolio@terminal:~$', command, output);
-        this.switchPage(pageName);
-    }
-    
-    getPageOutput(pageName) {
-        const outputs = {
-            home: 'Entering home directory... Welcome!',
-            about: 'Loading about.txt... Personal information displayed.',
-            projects: 'Scanning projects directory... Found 4 projects.',
-            skills: 'Reading skills.json... Technical skills loaded.',
-            contact: 'Opening contact.sh... Contact information ready.'
-        };
-        return outputs[pageName] || 'Directory changed successfully.';
-    }
-    
-    switchPage(pageName) {
-        // Update active nav item
-        this.navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('data-page') === pageName) {
-                item.classList.add('active');
-            }
-        });
-        
-        // Update active page
-        this.pages.forEach(page => {
-            page.classList.remove('active');
-            if (page.id === pageName) {
-                page.classList.add('active');
-            }
-        });
-        
-        this.currentPage = pageName;
-    }
-    
-    addCommandToHistory(prompt, command, output) {
-        const commandEntry = document.createElement('div');
-        commandEntry.className = 'command-entry';
-        
-        commandEntry.innerHTML = `
+        const div = document.createElement('div');
+        div.className = 'command-entry';
+        div.innerHTML = `
             <div>
-                <span class="prompt">${prompt}</span>
+                <span class="prompt">portfolio@terminal:~$</span>
                 <span class="command">${command}</span>
             </div>
             <div class="output">${output}</div>
         `;
         
-        this.commandHistory.appendChild(commandEntry);
-        
-        // Auto-scroll to bottom
-        setTimeout(() => {
-            this.commandHistory.scrollTop = this.commandHistory.scrollHeight;
-        }, 100);
+        commandHistory.appendChild(div);
+        commandHistory.scrollTop = commandHistory.scrollHeight;
     }
     
-    handleKeyPress(e) {
-        const keyCommands = {
+    // Navigate to page
+    function navigateToPage(pageName) {
+        console.log(`🧭 Navigating to: ${pageName}`);
+        
+        if (currentPage === pageName) {
+            console.log('Already on this page');
+            return;
+        }
+        
+        // Update navigation
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('data-page') === pageName) {
+                item.classList.add('active');
+                console.log(`✅ Nav item activated: ${pageName}`);
+            }
+        });
+        
+        // Update pages
+        pages.forEach(page => {
+            page.classList.remove('active');
+            if (page.id === pageName) {
+                page.classList.add('active');
+                console.log(`✅ Page activated: ${pageName}`);
+            }
+        });
+        
+        currentPage = pageName;
+        addCommand(`cd ${pageName}`, `Switched to ${pageName} page`);
+    }
+    
+    // Toggle theme
+    function toggleTheme() {
+        console.log('🎨 Toggling theme...');
+        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('portfolio-theme', currentTheme);
+        applyTheme();
+        addCommand('theme --toggle', `Switched to ${currentTheme} mode`);
+    }
+    
+    // Initialize
+    applyTheme();
+    addCommand('clear', 'Terminal initialized');
+    addCommand('ls -la', 'home/ about/ projects/ skills/ contact/');
+    
+    // Event listeners for navigation
+    console.log('🔗 Adding navigation listeners...');
+    navItems.forEach((item, index) => {
+        console.log(`Adding listener to nav item ${index}:`, item.textContent);
+        item.addEventListener('click', function(e) {
+            console.log('🖱️ Navigation clicked:', e.target.textContent);
+            const page = this.getAttribute('data-page');
+            console.log('Page data:', page);
+            if (page) {
+                navigateToPage(page);
+            }
+        });
+    });
+    
+    // Event listener for theme toggle
+    if (themeToggle) {
+        console.log('🎨 Adding theme toggle listener...');
+        themeToggle.addEventListener('click', function(e) {
+            console.log('🖱️ Theme toggle clicked');
+            e.preventDefault();
+            toggleTheme();
+        });
+    }
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        const keyMap = {
             '1': 'home',
-            '2': 'about', 
+            '2': 'about',
             '3': 'projects',
             '4': 'skills',
             '5': 'contact'
         };
         
-        if (keyCommands[e.key]) {
-            e.preventDefault();
-            this.navigateToPage(keyCommands[e.key]);
+        if (keyMap[e.key]) {
+            console.log(`⌨️ Keyboard shortcut: ${e.key} -> ${keyMap[e.key]}`);
+            navigateToPage(keyMap[e.key]);
         }
         
-        // Handle special commands
-        if (e.ctrlKey) {
-            switch(e.key) {
-                case 'l':
-                    e.preventDefault();
-                    this.clearTerminal();
-                    break;
-                case 'c':
-                    e.preventDefault();
-                    this.addCommandToHistory('portfolio@terminal:~$', '^C', 'Process interrupted.');
-                    break;
+        if (e.key === 't' || e.key === 'T') {
+            if (!e.ctrlKey && !e.altKey) {
+                console.log('⌨️ Theme toggle via keyboard');
+                toggleTheme();
             }
         }
         
-        // Handle help command (H key)
         if (e.key === 'h' || e.key === 'H') {
             if (!e.ctrlKey && !e.altKey) {
-                this.showHelp();
+                addCommand('help', 'Navigation: 1-5 keys, T for theme, H for help');
             }
         }
-    }
-    
-    clearTerminal() {
-        this.commandHistory.innerHTML = '';
-        this.addCommandToHistory('portfolio@terminal:~$', 'clear', 'Terminal cleared.');
-    }
-    
-    showHelp() {
-        const helpText = `Available commands:
-- cd [page]: Navigate to page (home, about, projects, skills, contact)
-- clear: Clear terminal (Ctrl+L)
-- help: Show this help message (H key)
-- Keyboard shortcuts: 1-5 to navigate pages
-- Ctrl+C: Interrupt command`;
-        
-        this.addCommandToHistory('portfolio@terminal:~$', 'help', helpText);
-    }
-    
-    handleFormSubmit() {
-        const name = document.querySelector('input[type="text"]').value;
-        const email = document.querySelector('input[type="email"]').value;
-        const message = document.querySelector('textarea').value;
-        
-        if (!name || !email || !message) {
-            this.addCommandToHistory('portfolio@terminal:~$', './send_message.sh', 'Error: All fields are required.');
-            return;
-        }
-        
-        const output = `Message sent successfully!
-From: ${name} <${email}>
-Content: ${message.substring(0, 50)}${message.length > 50 ? '...' : ''}
-Status: Delivered to inbox`;
-        
-        this.addCommandToHistory('portfolio@terminal:~$', './send_message.sh --send', output);
-        
-        // Clear form
-        document.querySelector('.terminal-form').reset();
-    }
-    
-    startCursorBlink() {
-        const cursor = document.querySelector('.cursor');
-        if (cursor) {
-            setInterval(() => {
-                cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-            }, 500);
-        }
-    }
-    
-    // Simulate typing effect for commands
-    typeCommand(element, text, speed = 50) {
-        return new Promise((resolve) => {
-            let index = 0;
-            element.textContent = '';
-            
-            const typeInterval = setInterval(() => {
-                if (index < text.length) {
-                    element.textContent += text.charAt(index);
-                    index++;
-                } else {
-                    clearInterval(typeInterval);
-                    resolve();
-                }
-            }, speed);
-        });
-    }
-    
-    // Add matrix rain effect (Easter egg)
-    initMatrixEffect() {
-        if (Math.random() < 0.01) { // 1% chance
-            this.addCommandToHistory('portfolio@terminal:~$', 'matrix --activate', 'The Matrix has you...');
-            // You could add actual matrix effect here
-        }
-    }
-}
-
-// Additional utility functions
-function formatDate() {
-    return new Date().toLocaleString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
-}
-
-function generateRandomId() {
-    return Math.random().toString(36).substr(2, 9);
-}
-
-// Easter eggs and special commands
-const easterEggs = {
-    'sudo': 'Nice try, but you\'re not root here! 😏',
-    'rm -rf /': 'Access denied. This portfolio is protected! 🛡️',
-    'whoami': 'You are a visitor exploring this portfolio.',
-    'pwd': '/home/portfolio/visitor',
-    'date': formatDate(),
-    'uptime': 'Portfolio has been running since page load.',
-    'ps aux': 'PID TTY TIME CMD\n1 pts/0 00:00:01 portfolio-app'
-};
-
-// Initialize the terminal portfolio when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const terminal = new TerminalPortfolio();
-    
-    // Add easter egg command listener
-    document.addEventListener('keydown', (e) => {
-        // Listen for specific key combinations for easter eggs
-        if (e.ctrlKey && e.shiftKey && e.key === 'I') {
-            terminal.addCommandToHistory('portfolio@terminal:~$', 'inspect --developer-tools', 'Developer mode detected. Welcome, fellow coder! 👨‍💻');
-        }
     });
     
-    // Add welcome message after a short delay
-    setTimeout(() => {
-        terminal.addCommandToHistory('portfolio@terminal:~$', 'echo "Type \'h\' for help or use the navigation above"', 'Ready for commands...');
-    }, 1000);
+    console.log('✅ Initialization complete!');
 });
-
-// Add some animations and effects
-function addGlitchEffect() {
-    const terminal = document.querySelector('.terminal');
-    terminal.style.animation = 'glitch 0.1s';
-    setTimeout(() => {
-        terminal.style.animation = '';
-    }, 100);
-}
-
-// CSS animation for glitch effect (to be added to CSS)
-const glitchKeyframes = `
-@keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
-}
-`;
-
-// Inject glitch keyframes into the page
-const styleSheet = document.createElement('style');
-styleSheet.textContent = glitchKeyframes;
-document.head.appendChild(styleSheet);
