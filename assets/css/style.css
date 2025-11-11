@@ -99,12 +99,41 @@ body {
 
 .command-history {
     height: 120px;
-    margin-bottom: 20px;
+    min-height: 60px;
+    max-height: 400px;
     border-bottom: 1px solid var(--border-color);
     padding: 10px;
     overflow-y: auto;
     display: block;
     flex-shrink: 0;
+}
+
+.resize-handle {
+    height: 8px;
+    cursor: ns-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.resize-handle:hover {
+    background: rgba(0, 255, 0, 0.05);
+}
+
+.resize-indicator {
+    width: 40px;
+    height: 3px;
+    background: var(--border-color);
+    border-radius: 2px;
+    transition: all 0.2s ease;
+}
+
+.resize-handle:hover .resize-indicator {
+    background: var(--text-primary);
+    width: 60px;
 }
 
 .command-entry {
@@ -687,6 +716,23 @@ h2 {
 @keyframes blink {
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
+}
+
+.command-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-secondary);
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+.command-input::selection {
+    background: var(--text-primary);
+    color: var(--bg-secondary);
 }
 
 /* Scrollbar styling */

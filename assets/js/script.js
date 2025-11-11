@@ -8,11 +8,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const navItems = document.querySelectorAll('.nav-item');
     const pages = document.querySelectorAll('.page');
     const commandHistory = document.getElementById('commandHistory');
+    const commandInput = document.getElementById('commandInput');
+    const resizeHandle = document.getElementById('resizeHandle');
 
     console.log('📊 Found elements:', {
         navItems: navItems.length,
         pages: pages.length,
-        commandHistory: !!commandHistory
+        commandHistory: !!commandHistory,
+        commandInput: !!commandInput
     });
 
     // Current state
@@ -26,6 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
         chunkDelay: 15,      // Delay for chunk-based typing (ms)
         enabled: true        // Toggle typewriter effect
     };
+
+    // Available commands and pages for autocomplete
+    const availableCommands = ['help', 'clear', 'ls', 'echo', 'cd'];
+    const availablePages = ['home', 'about', 'projects', 'skills', 'contact'];
     
     // Typewriter effect for elements
     async function typewriterEffect(element) {
@@ -182,8 +189,101 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Process command input
+    function processCommand(command) {
+        const cmd = command.trim().toLowerCase();
+
+        if (!cmd) return;
+
+        // Add command to history
+        addCommand(command, '');
+
+        // Process different commands
+        if (cmd === 'help') {
+            addCommand('', 'Available commands: cd [page], ls, clear, help, echo [text]');
+        } else if (cmd === 'clear') {
+            commandHistory.innerHTML = '';
+            addCommand('clear', 'Terminal cleared');
+        } else if (cmd === 'ls' || cmd === 'ls -la') {
+            addCommand('', 'home/  about/  projects/  skills/  contact/');
+        } else if (cmd.startsWith('cd ')) {
+            const page = cmd.substring(3).trim();
+            const validPages = ['home', 'about', 'projects', 'skills', 'contact'];
+            if (validPages.includes(page)) {
+                navigateToPage(page);
+            } else {
+                addCommand('', `cd: ${page}: No such directory`);
+            }
+        } else if (cmd.startsWith('echo ')) {
+            const text = command.substring(5);
+            addCommand('', text);
+        } else {
+            addCommand('', `${cmd}: command not found`);
+        }
+    }
+
+    // Autocomplete function
+    function autocomplete(input) {
+        const parts = input.trim().split(' ');
+        const firstWord = parts[0].toLowerCase();
+
+        // If empty or just typing first command
+        if (parts.length === 1) {
+            const matches = availableCommands.filter(cmd => cmd.startsWith(firstWord));
+            if (matches.length === 1) {
+                return matches[0];
+            } else if (matches.length > 1) {
+                // Show available options
+                addCommand('', matches.join('  '));
+                return input;
+            }
+        }
+
+        // If typing "cd " followed by page name
+        if (firstWord === 'cd' && parts.length === 2) {
+            const pagePrefix = parts[1].toLowerCase();
+            const matches = availablePages.filter(page => page.startsWith(pagePrefix));
+            if (matches.length === 1) {
+                return 'cd ' + matches[0];
+            } else if (matches.length > 1) {
+                // Show available options
+                addCommand('', matches.join('  '));
+                return input;
+            }
+        }
+
+        return input;
+    }
+
+    // Command input handler
+    if (commandInput) {
+        commandInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const command = this.value;
+                processCommand(command);
+                this.value = '';
+            } else if (e.key === 'Tab') {
+                e.preventDefault();
+                const currentValue = this.value;
+                const completed = autocomplete(currentValue);
+                this.value = completed;
+            }
+        });
+
+        // Auto-focus on input when clicking anywhere
+        document.addEventListener('click', function() {
+            commandInput.focus();
+        });
+
+        // Initial focus
+        commandInput.focus();
+    }
+
     // Keyboard shortcuts
     document.addEventListener('keydown', function(e) {
+        // Skip shortcuts if typing in input
+        if (e.target === commandInput) return;
+
         const keyMap = {
             '1': 'home',
             '2': 'about',
@@ -203,6 +303,53 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-    
+
+    // Resize functionality for command-history
+    if (resizeHandle && commandHistory) {
+        let isResizing = false;
+        let startY = 0;
+        let startHeight = 0;
+
+        // Load saved height from localStorage
+        const savedHeight = localStorage.getItem('commandHistoryHeight');
+        if (savedHeight) {
+            commandHistory.style.height = savedHeight + 'px';
+        }
+
+        resizeHandle.addEventListener('mousedown', function(e) {
+            isResizing = true;
+            startY = e.clientY;
+            startHeight = commandHistory.offsetHeight;
+            document.body.style.cursor = 'ns-resize';
+            document.body.style.userSelect = 'none';
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (!isResizing) return;
+
+            const deltaY = e.clientY - startY;
+            const newHeight = startHeight + deltaY;
+
+            // Constrain between min and max
+            const minHeight = 60;
+            const maxHeight = 400;
+            const constrainedHeight = Math.max(minHeight, Math.min(maxHeight, newHeight));
+
+            commandHistory.style.height = constrainedHeight + 'px';
+        });
+
+        document.addEventListener('mouseup', function() {
+            if (isResizing) {
+                isResizing = false;
+                document.body.style.cursor = '';
+                document.body.style.userSelect = '';
+
+                // Save height to localStorage
+                localStorage.setItem('commandHistoryHeight', commandHistory.offsetHeight);
+            }
+        });
+    }
+
     console.log('✅ Initialization complete!');
 });
