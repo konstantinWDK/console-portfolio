@@ -1,6 +1,5 @@
-/* CSS Variables for Theme System */
+/* CSS Variables - Dark Theme Only */
 :root {
-    /* Dark Theme (Default) */
     --bg-primary: #0c0c0c;
     --bg-secondary: #1a1a1a;
     --bg-tertiary: #2d2d2d;
@@ -11,34 +10,13 @@
     --border-color: #333;
     --shadow-color: rgba(0, 255, 0, 0.3);
     --glow-color: rgba(0, 255, 0, 0.1);
-    
+
     /* Interactive colors */
     --success-color: #28ca42;
     --warning-color: #ffbd2e;
     --error-color: #ff5f57;
     --info-color: #00ffff;
     --orange-color: #ff8800;
-}
-
-[data-theme="light"] {
-    /* Light Theme */
-    --bg-primary: #f5f5f5;
-    --bg-secondary: #ffffff;
-    --bg-tertiary: #e0e0e0;
-    --text-primary: #2d5a2d;
-    --text-secondary: #333333;
-    --text-muted: #666666;
-    --text-accent: #b8860b;
-    --border-color: #ddd;
-    --shadow-color: rgba(45, 90, 45, 0.2);
-    --glow-color: rgba(45, 90, 45, 0.1);
-    
-    /* Interactive colors for light theme */
-    --success-color: #228B22;
-    --warning-color: #DAA520;
-    --error-color: #DC143C;
-    --info-color: #4682B4;
-    --orange-color: #FF8C00;
 }
 
 * {
@@ -110,22 +88,6 @@ body {
     text-align: center;
 }
 
-/* Theme Toggle */
-.theme-toggle {
-    position: absolute;
-    right: 15px;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 5px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    user-select: none;
-}
-
-.theme-toggle:hover {
-    background: var(--glow-color);
-    transform: rotate(180deg);
-}
 
 .terminal-body {
     flex: 1;
@@ -136,11 +98,13 @@ body {
 }
 
 .command-history {
-    max-height: 200px;
+    height: 120px;
     margin-bottom: 20px;
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 15px;
+    padding: 10px;
     overflow-y: auto;
+    display: block;
+    flex-shrink: 0;
 }
 
 .command-entry {
@@ -175,6 +139,7 @@ body {
     gap: 15px;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 15px;
+    flex-shrink: 0;
 }
 
 .nav-item {
@@ -200,6 +165,8 @@ body {
 .content-area {
     flex: 1;
     margin-bottom: 20px;
+    overflow-y: auto;
+    min-height: 0;
 }
 
 .page {
@@ -472,111 +439,89 @@ h2 {
     border-color: var(--text-primary);
 }
 
-/* Enhanced Skills Section */
-.json-content {
+/* Enhanced Skills Section - Console Style */
+.skills-console {
     margin-left: 20px;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 15px;
-    border-radius: 4px;
-    border: 1px solid var(--border-color);
+    font-family: 'Courier New', monospace;
+    line-height: 1.8;
 }
 
-.skill-category {
+.skill-section {
     margin-bottom: 25px;
     padding: 15px;
     background: rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    border-left: 3px solid var(--text-primary);
-}
-
-.category-title {
-    color: var(--text-accent);
-    font-size: 16px;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-.skill-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-}
-
-.skill-item {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.3);
+    border-left: 2px solid var(--text-primary);
     border-radius: 4px;
-    transition: all 0.3s ease;
 }
 
-.skill-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px var(--shadow-color);
-}
-
-.skill-name {
-    color: var(--text-secondary);
+.section-header {
+    color: var(--text-accent);
+    font-size: 14px;
     font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.skill-list {
+    margin-left: 10px;
+}
+
+.skill-line {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.skill-level {
+    color: var(--text-primary);
+    font-weight: bold;
+    margin-left: auto;
+}
+
+.skill-level.expert {
+    color: var(--success-color);
+}
+
+.skill-level.advanced {
+    color: var(--info-color);
+}
+
+.skill-level.intermediate {
+    color: var(--warning-color);
+}
+
+.skill-time {
+    color: var(--text-muted);
+    font-size: 11px;
+    min-width: 30px;
+}
+
+.command-output {
+    color: var(--text-primary);
+    margin-bottom: 10px;
     font-size: 14px;
 }
 
-.skill-bar {
-    height: 8px;
-    background: var(--border-color);
-    border-radius: 4px;
-    overflow: hidden;
+.soft-skills-console {
+    margin-left: 10px;
 }
 
-.skill-progress {
-    height: 100%;
-    background: linear-gradient(90deg, var(--text-primary), var(--text-accent));
-    border-radius: 4px;
-    transition: width 1s ease;
-    animation: skillLoad 2s ease-in-out;
-}
-
-@keyframes skillLoad {
-    from { width: 0; }
-    to { width: var(--skill-width, 0%); }
-}
-
-.skill-item.expert .skill-progress { --skill-width: 90%; }
-.skill-item.advanced .skill-progress { --skill-width: 75%; }
-.skill-item.intermediate .skill-progress { --skill-width: 60%; }
-
-.skill-years {
+.soft-skill-line {
     color: var(--text-muted);
-    font-size: 12px;
-}
-
-.terminal-command {
-    margin-top: 20px;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-}
-
-.terminal-command p {
-    color: var(--text-primary);
-    margin-bottom: 10px;
-}
-
-.soft-skills {
+    font-size: 13px;
+    margin-bottom: 5px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    align-items: center;
 }
 
-.soft-skill {
-    background: var(--glow-color);
-    color: var(--text-primary);
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 12px;
-    border: 1px solid var(--border-color);
+.soft-skill-line .check {
+    color: var(--success-color);
+    margin-left: auto;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 /* Enhanced Contact Section */
@@ -725,6 +670,8 @@ h2 {
     margin-top: auto;
     padding-top: 10px;
     border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
+    height: 40px;
 }
 
 .prompt {
@@ -967,6 +914,34 @@ h2 {
     
     .tech-stack {
         justify-content: center;
+    }
+}
+
+/* Typewriter effect styles */
+.typing-cursor::after {
+    content: '▊';
+    animation: typingCursor 0.8s infinite;
+    color: var(--text-primary);
+}
+
+@keyframes typingCursor {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+/* Smooth reveal animations */
+.reveal-item {
+    animation: revealItem 0.3s ease forwards;
+}
+
+@keyframes revealItem {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 

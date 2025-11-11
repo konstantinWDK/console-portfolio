@@ -15,9 +15,6 @@
                 <span class="control maximize"></span>
             </div>
             <div class="terminal-title">portfolio@terminal:~$</div>
-            <div class="theme-toggle" id="themeToggle">
-                <span class="theme-icon">🌙</span>
-            </div>
         </div>
         
         <div class="terminal-body">
@@ -49,7 +46,6 @@
                         <p class="command-list">• cd [section] - Navigate to section</p>
                         <p class="command-list">• help - Show this help</p>
                         <p class="command-list">• clear - Clear terminal</p>
-                        <p class="command-list">• theme - Toggle light/dark mode</p>
                         <br>
                         <p class="tip">💡 Pro tip: Use keyboard shortcuts 1-5 to navigate quickly!</p>
                     </div>
@@ -201,95 +197,47 @@
                 
                 <div class="page" id="skills">
                     <div class="page-content">
-                        <h2>$ cat skills.json | jq '.' --color-output</h2>
-                        <div class="json-content">
-                            <div class="skill-category">
-                                <h3 class="category-title">🎨 Frontend Development</h3>
-                                <div class="skill-grid">
-                                    <div class="skill-item expert">
-                                        <span class="skill-name">JavaScript</span>
-                                        <div class="skill-bar"><div class="skill-progress" data-level="95"></div></div>
-                                        <span class="skill-years">5+ años</span>
-                                    </div>
-                                    <div class="skill-item expert">
-                                        <span class="skill-name">React</span>
-                                        <div class="skill-bar"><div class="skill-progress" data-level="90"></div></div>
-                                        <span class="skill-years">4+ años</span>
-                                    </div>
-                                    <div class="skill-item advanced">
-                                        <span class="skill-name">Vue.js</span>
-                                        <div class="skill-bar"><div class="skill-progress" data-level="85"></div></div>
-                                        <span class="skill-years">3+ años</span>
-                                    </div>
-                                    <div class="skill-item expert">
-                                        <span class="skill-name">CSS3/Sass</span>
-                                        <div class="skill-bar"><div class="skill-progress" data-level="92"></div></div>
-                                        <span class="skill-years">5+ años</span>
-                                    </div>
+                        <h2>$ grep -r "SKILL_LEVEL" /etc/profile.d/developer.conf</h2>
+                        <div class="skills-console">
+                            <div class="skill-section">
+                                <p class="section-header">[Frontend Development]</p>
+                                <div class="skill-list">
+                                    <p class="skill-line">├── JavaScript...................<span class="skill-level expert">[████████████████████░] 95%</span> <span class="skill-time">5y</span></p>
+                                    <p class="skill-line">├── React.......................<span class="skill-level expert">[██████████████████░░] 90%</span> <span class="skill-time">4y</span></p>
+                                    <p class="skill-line">├── Vue.js......................<span class="skill-level advanced">[█████████████████░░░] 85%</span> <span class="skill-time">3y</span></p>
+                                    <p class="skill-line">└── CSS3/Sass...................<span class="skill-level expert">[██████████████████░░] 92%</span> <span class="skill-time">5y</span></p>
                                 </div>
                             </div>
-                            
-                            <div class="skill-category">
-                                <h3 class="category-title">🛠️ Backend Development</h3>
-                                <div class="skill-grid">
-                                    <div class="skill-item expert">
-                                        <span class="skill-name">Node.js</span>
-                                        <div class="skill-bar"><div class="skill-progress" data-level="88"></div></div>
-                                        <span class="skill-years">4+ años</span>
-                                    </div>
-                                    <div class="skill-item advanced">
-                                        <span class="skill-name">Python</span>
-                                        <div class="skill-bar"><div class="skill-progress" data-level="82"></div></div>
-                                        <span class="skill-years">3+ años</span>
-                                    </div>
-                                    <div class="skill-item expert">
-                                        <span class="skill-name">MongoDB</span>
-                                        <div class="skill-bar"><div class="skill-progress" data-level="87"></div></div>
-                                        <span class="skill-years">4+ años</span>
-                                    </div>
-                                    <div class="skill-item advanced">
-                                        <span class="skill-name">PostgreSQL</span>
-                                        <div class="skill-bar"><div class="skill-progress" data-level="80"></div></div>
-                                        <span class="skill-years">2+ años</span>
-                                    </div>
+
+                            <div class="skill-section">
+                                <p class="section-header">[Backend Development]</p>
+                                <div class="skill-list">
+                                    <p class="skill-line">├── Node.js.....................<span class="skill-level expert">[█████████████████░░░] 88%</span> <span class="skill-time">4y</span></p>
+                                    <p class="skill-line">├── Python......................<span class="skill-level advanced">[████████████████░░░░] 82%</span> <span class="skill-time">3y</span></p>
+                                    <p class="skill-line">├── MongoDB.....................<span class="skill-level expert">[█████████████████░░░] 87%</span> <span class="skill-time">4y</span></p>
+                                    <p class="skill-line">└── PostgreSQL..................<span class="skill-level advanced">[████████████████░░░░] 80%</span> <span class="skill-time">2y</span></p>
                                 </div>
                             </div>
-                            
-                            <div class="skill-category">
-                                <h3 class="category-title">🚀 DevOps & Tools</h3>
-                                <div class="skill-grid">
-                                    <div class="skill-item expert">
-                                        <span class="skill-name">Git</span>
-                                        <div class="skill-bar"><div class="skill-progress" data-level="93"></div></div>
-                                        <span class="skill-years">5+ años</span>
-                                    </div>
-                                    <div class="skill-item advanced">
-                                        <span class="skill-name">Docker</span>
-                                        <div class="skill-bar"><div class="skill-progress" data-level="78"></div></div>
-                                        <span class="skill-years">2+ años</span>
-                                    </div>
-                                    <div class="skill-item intermediate">
-                                        <span class="skill-name">AWS</span>
-                                        <div class="skill-bar"><div class="skill-progress" data-level="70"></div></div>
-                                        <span class="skill-years">1+ año</span>
-                                    </div>
-                                    <div class="skill-item expert">
-                                        <span class="skill-name">VS Code</span>
-                                        <div class="skill-bar"><div class="skill-progress" data-level="98"></div></div>
-                                        <span class="skill-years">5+ años</span>
-                                    </div>
+
+                            <div class="skill-section">
+                                <p class="section-header">[DevOps & Tools]</p>
+                                <div class="skill-list">
+                                    <p class="skill-line">├── Git.........................<span class="skill-level expert">[██████████████████░░] 93%</span> <span class="skill-time">5y</span></p>
+                                    <p class="skill-line">├── Docker......................<span class="skill-level advanced">[███████████████░░░░░] 78%</span> <span class="skill-time">2y</span></p>
+                                    <p class="skill-line">├── AWS.........................<span class="skill-level intermediate">[██████████████░░░░░░] 70%</span> <span class="skill-time">1y</span></p>
+                                    <p class="skill-line">└── VS Code.....................<span class="skill-level expert">[███████████████████░] 98%</span> <span class="skill-time">5y</span></p>
                                 </div>
                             </div>
-                            
-                            <div class="terminal-command">
-                                <p>$ echo "Soft Skills:" && cat soft_skills.txt</p>
-                                <div class="soft-skills">
-                                    <span class="soft-skill">🧠 Problem Solving</span>
-                                    <span class="soft-skill">👥 Team Leadership</span>
-                                    <span class="soft-skill">💬 Communication</span>
-                                    <span class="soft-skill">📈 Project Management</span>
-                                    <span class="soft-skill">🎯 Attention to Detail</span>
-                                    <span class="soft-skill">🚀 Innovation</span>
+
+                            <div class="skill-section">
+                                <p class="command-output">$ cat soft_skills.txt</p>
+                                <div class="soft-skills-console">
+                                    <p class="soft-skill-line">• Problem Solving........<span class="check">✓</span></p>
+                                    <p class="soft-skill-line">• Team Leadership........<span class="check">✓</span></p>
+                                    <p class="soft-skill-line">• Communication..........<span class="check">✓</span></p>
+                                    <p class="soft-skill-line">• Project Management.....<span class="check">✓</span></p>
+                                    <p class="soft-skill-line">• Attention to Detail....<span class="check">✓</span></p>
+                                    <p class="soft-skill-line">• Innovation.............<span class="check">✓</span></p>
                                 </div>
                             </div>
                         </div>
