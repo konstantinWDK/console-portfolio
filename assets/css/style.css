@@ -696,9 +696,8 @@ h2 {
 .command-prompt {
     display: flex;
     align-items: center;
-    margin-top: auto;
-    padding-top: 10px;
-    border-top: 1px solid var(--border-color);
+    margin-bottom: 15px;
+    padding: 10px 0;
     flex-shrink: 0;
     height: 40px;
 }

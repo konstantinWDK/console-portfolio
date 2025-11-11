@@ -23,6 +23,11 @@
                 <div class="resize-indicator"></div>
             </div>
 
+            <div class="command-prompt">
+                <span class="prompt">portfolio@terminal:~$ </span>
+                <input type="text" class="command-input" id="commandInput" autocomplete="off" spellcheck="false">
+            </div>
+
             <div class="navigation">
                 <div class="nav-item active" data-page="home">$ cd home</div>
                 <div class="nav-item" data-page="about">$ cd about</div>
@@ -48,6 +53,7 @@
                         <p class="help-text">📋 Available commands:</p>
                         <p class="command-list">• cd [section] - Navigate to section (home, about, projects, skills, contact)</p>
                         <p class="command-list">• ls - List available sections</p>
+                        <p class="command-list">• documentation - Display complete documentation</p>
                         <p class="command-list">• echo [text] - Print text to terminal</p>
                         <p class="command-list">• clear - Clear command history</p>
                         <p class="command-list">• help - Show this help</p>
@@ -352,11 +358,6 @@ Puedes incluir:
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="command-prompt">
-                <span class="prompt">portfolio@terminal:~$ </span>
-                <input type="text" class="command-input" id="commandInput" autocomplete="off" spellcheck="false">
             </div>
         </div>
     </div>

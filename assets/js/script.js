@@ -31,9 +31,96 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // Available commands and pages for autocomplete
-    const availableCommands = ['help', 'clear', 'ls', 'echo', 'cd'];
+    const availableCommands = ['help', 'clear', 'ls', 'echo', 'cd', 'documentation'];
     const availablePages = ['home', 'about', 'projects', 'skills', 'contact'];
-    
+
+    // Documentation content
+    const documentationBlocks = [
+        {
+            title: '📚 TERMINAL PORTFOLIO - DOCUMENTATION',
+            content: 'Version 1.0 | Last Updated: 2024-11-12'
+        },
+        {
+            title: '🎯 OVERVIEW',
+            content: 'This is an interactive terminal-style portfolio built with vanilla JavaScript.\nNavigate through different sections using terminal commands or click navigation.'
+        },
+        {
+            title: '⌨️ AVAILABLE COMMANDS',
+            content: `cd [section]     Navigate to a section (home, about, projects, skills, contact)
+ls               List all available sections
+clear            Clear the command history
+echo [text]      Print text to the terminal
+help             Show available commands
+documentation    Display this documentation`
+        },
+        {
+            title: '🚀 NAVIGATION',
+            content: `• Type commands in the input at the bottom
+• Use Tab key for autocomplete
+• Press 1-5 for quick navigation to sections
+• Press H for help
+• Click on section names to navigate`
+        },
+        {
+            title: '🎨 FEATURES',
+            content: `✓ Typewriter effect on page transitions
+✓ Command autocomplete with Tab
+✓ Resizable command history (drag the handle)
+✓ Command history persistence
+✓ Keyboard shortcuts
+✓ Responsive design`
+        },
+        {
+            title: '🔧 CUSTOMIZATION',
+            content: `The command history height can be adjusted by dragging the resize handle.
+Your preferred height is saved automatically in localStorage.
+Min height: 60px | Max height: 400px`
+        },
+        {
+            title: '📝 TIPS & TRICKS',
+            content: `• Start typing a command and press Tab to autocomplete
+• Type "cd a" + Tab to autocomplete to "cd about"
+• Use arrow keys to navigate through command history (coming soon)
+• The terminal stays focused - just start typing!`
+        },
+        {
+            title: '✅ DOCUMENTATION END',
+            content: 'For more information, navigate through the sections or type "help"'
+        }
+    ];
+
+    // Display documentation progressively
+    async function showDocumentation() {
+        if (isTyping) return;
+        isTyping = true;
+
+        for (let block of documentationBlocks) {
+            // Add title
+            const titleDiv = document.createElement('div');
+            titleDiv.className = 'command-entry';
+            titleDiv.innerHTML = `<div class="output" style="color: var(--text-primary); font-weight: bold; margin-top: 10px;">${block.title}</div>`;
+            commandHistory.appendChild(titleDiv);
+            commandHistory.scrollTop = commandHistory.scrollHeight;
+            await sleep(150);
+
+            // Add content line by line
+            const lines = block.content.split('\n');
+            for (let line of lines) {
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'command-entry';
+                contentDiv.innerHTML = `<div class="output" style="color: var(--text-muted); margin-left: 10px;">${line}</div>`;
+                commandHistory.appendChild(contentDiv);
+                commandHistory.scrollTop = commandHistory.scrollHeight;
+                await sleep(80);
+            }
+
+            // Small pause between blocks
+            await sleep(100);
+        }
+
+        isTyping = false;
+    }
+
     // Typewriter effect for elements
     async function typewriterEffect(element) {
         if (!typewriterConfig.enabled) {
@@ -200,12 +287,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Process different commands
         if (cmd === 'help') {
-            addCommand('', 'Available commands: cd [page], ls, clear, help, echo [text]');
+            addCommand('', 'Available commands: cd [page], ls, clear, help, echo [text], documentation');
         } else if (cmd === 'clear') {
             commandHistory.innerHTML = '';
             addCommand('clear', 'Terminal cleared');
         } else if (cmd === 'ls' || cmd === 'ls -la') {
             addCommand('', 'home/  about/  projects/  skills/  contact/');
+        } else if (cmd === 'documentation' || cmd === 'docs') {
+            addCommand('documentation', 'Loading documentation...');
+            showDocumentation();
         } else if (cmd.startsWith('cd ')) {
             const page = cmd.substring(3).trim();
             const validPages = ['home', 'about', 'projects', 'skills', 'contact'];
