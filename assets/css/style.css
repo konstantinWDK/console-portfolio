@@ -1,4 +1,4 @@
-/* CSS Variables - Dark Theme Only */
+/* CSS Variables - Tema Ubuntu (por defecto) */
 :root {
     --bg-primary: #0c0c0c;
     --bg-secondary: #1a1a1a;
@@ -15,6 +15,63 @@
     --success-color: #28ca42;
     --warning-color: #ffbd2e;
     --error-color: #ff5f57;
+    --info-color: #00ffff;
+    --orange-color: #ff8800;
+}
+
+/* Tema Windows PowerShell */
+.terminal.theme-windows {
+    --bg-primary: #012456;
+    --bg-secondary: #001f3f;
+    --bg-tertiary: #005a9e;
+    --text-primary: #0078d7;
+    --text-secondary: #ffffff;
+    --text-muted: #a0a0a0;
+    --text-accent: #ffffff;
+    --border-color: #004578;
+    --shadow-color: rgba(0, 120, 215, 0.3);
+    --glow-color: rgba(0, 120, 215, 0.1);
+    --success-color: #107c10;
+    --warning-color: #d83b01;
+    --error-color: #e81123;
+    --info-color: #0078d7;
+    --orange-color: #ff8c00;
+}
+
+/* Tema macOS Terminal */
+.terminal.theme-macos {
+    --bg-primary: #1d1d1f;
+    --bg-secondary: #2d2d2f;
+    --bg-tertiary: #3d3d3f;
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --text-muted: #a0a0a0;
+    --text-accent: #007aff;
+    --border-color: #444;
+    --shadow-color: rgba(100, 210, 255, 0.3);
+    --glow-color: rgba(100, 210, 255, 0.1);
+    --success-color: #30d158;
+    --warning-color: #ff9f0a;
+    --error-color: #ff453a;
+    --info-color: #64d2ff;
+    --orange-color: #ff9f0a;
+}
+
+/* Tema Matrix */
+.terminal.theme-matrix {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #001100;
+    --bg-tertiary: #002200;
+    --text-primary: #00ff41;
+    --text-secondary: #00ff41;
+    --text-muted: #008f11;
+    --text-accent: #00ff41;
+    --border-color: #003300;
+    --shadow-color: rgba(0, 255, 65, 0.3);
+    --glow-color: rgba(0, 255, 65, 0.1);
+    --success-color: #00ff41;
+    --warning-color: #ffff00;
+    --error-color: #ff0000;
     --info-color: #00ffff;
     --orange-color: #ff8800;
 }

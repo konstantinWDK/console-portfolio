@@ -1,31 +1,27 @@
 # 🖥️ Terminal Portfolio
 
-> Un recurso gratuito para los amantes del código que quieren hacer su portfolio al estilo consola
-
-![Terminal Portfolio](https://img.shields.io/badge/Terminal-Portfolio-brightgreen?style=for-the-badge&logo=terminal)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-
-## 🎯 ¿Qué es Terminal Portfolio?
-
-Terminal Portfolio es una plantilla completamente gratuita que simula una terminal de línea de comandos para mostrar tu portfolio de desarrollador de una manera única y atractiva. Perfecta para desarrolladores que quieren destacar con un diseño retro y funcional.
-
-## ✨ Características
-
-- 🖥️ **Interfaz de terminal realista** con efectos de parpadeo del cursor
-- 📱 **Completamente responsive** - funciona en desktop, tablet y móvil
-- ⌨️ **Navegación por teclado** - usa las teclas 1-5 para navegar
-- 🎨 **Animaciones suaves** con efectos de transición
-- 📝 **Historial de comandos** interactivo
-- 🎭 **Easter eggs** ocultos para desarrolladores curiosos
-- 🌈 **Tema matrix/hacker** con colores verde neón
-- 📋 **Formulario de contacto** funcional
-- 🎯 **Fácil personalización** - solo edita el HTML
+Plantilla gratuita de portfolio con interfaz de terminal personalizable
 
 ## 🚀 Demo en Vivo
 
-Visita la demo para ver el portfolio en acción: [https://konstantinwdk.github.io/console-portfolio/](https://konstantinwdk.github.io/console-portfolio/)
+[https://webdesignerk.com/console-portfolio/](https://webdesignerk.com/console-portfolio/)
+
+## 🎥 Video de Funcionalidad
+
+[![Video demostrativo del portfolio terminal](https://webdesignerk.com/wp-content/uploads/2025/11/console-portfolio-usability-video.mp4)](https://webdesignerk.com/wp-content/uploads/2025/11/console-portfolio-usability-video.mp4)
+
+*Ver video demostrativo de la funcionalidad del portfolio*
+
+## 📸 Capturas de Pantalla
+
+![Vista general del portfolio terminal](https://webdesignerk.com/wp-content/uploads/2025/11/console-portfolio-view.png)
+*Interfaz principal del portfolio terminal*
+
+![Sección de proyectos](https://webdesignerk.com/wp-content/uploads/2025/11/console-portfolio-best-template.png)
+*Lista de proyectos con estilo de terminal*
+
+![Sección de habilidades](https://webdesignerk.com/wp-content/uploads/2025/11/console-portfolio-best-js.png)
+*Habilidades técnicas representadas como niveles de sistema*
 
 ## 📁 Estructura del Proyecto
 
@@ -33,243 +29,164 @@ Visita la demo para ver el portfolio en acción: [https://konstantinwdk.github.i
 console-portfolio/
 ├── assets/
 │   ├── css/
-│   │   └── style.css       # Estilos del terminal y animaciones
+│   │   └── style.css       # Estilos y temas del terminal
 │   ├── js/
 │   │   └── script.js       # Lógica de navegación e interacciones
-│   └── images/             # Imágenes y recursos gráficos
-├── docs/                   # Documentación adicional
-├── index.html              # Estructura principal del portfolio
-├── .gitignore             # Archivos ignorados por Git
-├── LICENSE                # Licencia MIT
-└── README.md              # Este archivo
+│   └── images/             # Recursos gráficos
+├── index.html              # Estructura principal
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
 
-## 🛠️ Instalación y Uso
+## 🛠️ Instalación
 
-### Opción 1: Descarga Directa
-1. Descarga los archivos del repositorio
-2. Personaliza tu información en `index.html`
-3. Abre `index.html` en tu navegador
-4. ¡Listo! Tu portfolio está funcionando
-
-### Opción 2: Clonación
 ```bash
 git clone https://github.com/konstantinWDK/console-portfolio.git
 cd console-portfolio
-
-# Opción 1: Abrir directamente
-# Abre index.html en tu navegador favorito
-
-# Opción 2: Servidor local (opcional)
-python -m http.server 8000
-# Luego ve a http://localhost:8000
+# Abre index.html en tu navegador
 ```
 
 ## ⚙️ Personalización
 
-### 1. Información Personal
-Edita las siguientes secciones en `index.html`:
+### 1. Cambio de Tema de Consola
 
-**Sección About (`id="about"`):**
-```html
-<p>Name: [Tu Nombre]</p>
-<p>Role: [Tu Rol]</p>
-<p>Location: [Tu Ubicación]</p>
-<p>Experience: [Años de experiencia]</p>
+Modifica las variables CSS en `assets/css/style.css`:
+
+```css
+/* Tema Ubuntu (por defecto) */
+:root {
+    --primary-color: #00ff00;
+    --secondary-color: #ffff00;
+    --background: #0c0c0c;
+    --terminal-bg: #1a1a1a;
+    --header-bg: #2d2d2d;
+    --text-color: #ffffff;
+    --cursor-color: #00ff00;
+}
+
+/* Tema Windows PowerShell */
+.theme-windows {
+    --primary-color: #0078d7;
+    --secondary-color: #ffffff;
+    --background: #012456;
+    --terminal-bg: #001f3f;
+    --header-bg: #005a9e;
+    --text-color: #ffffff;
+    --cursor-color: #0078d7;
+}
+
+/* Tema macOS Terminal */
+.theme-macos {
+    --primary-color: #ffffff;
+    --secondary-color: #007aff;
+    --background: #1d1d1f;
+    --terminal-bg: #2d2d2f;
+    --header-bg: #3d3d3f;
+    --text-color: #ffffff;
+    --cursor-color: #64d2ff;
+}
+
+/* Tema Matrix */
+.theme-matrix {
+    --primary-color: #00ff41;
+    --secondary-color: #008f11;
+    --background: #0a0a0a;
+    --terminal-bg: #001100;
+    --header-bg: #002200;
+    --text-color: #00ff41;
+    --cursor-color: #00ff41;
+}
 ```
 
-**Sección Projects (`id="projects"`):**
-Añade tus proyectos modificando los elementos `.project-item`:
+Para cambiar el tema, añade la clase correspondiente al elemento `.terminal` en `index.html`:
+
 ```html
-<div class="project-item">
-    <span class="permissions">drwxr-xr-x</span>
-    <span class="size">4.2K</span>
-    <span class="date">Jan 15</span>
-    <span class="name">tu-proyecto/</span>
-    <p class="description">Descripción de tu proyecto</p>
+<div class="terminal theme-windows">
+```
+
+### 2. Información Personal
+
+**Sección About:**
+```html
+<div class="page" id="about">
+    <div class="page-content">
+        <h2>$ cat about.txt</h2>
+        <div class="file-content">
+            <p class="variable">NAME="Tu Nombre"</p>
+            <p class="variable">ROLE="Tu Rol"</p>
+            <p class="variable">LOCATION="Tu Ubicación"</p>
+            <p class="variable">EXPERIENCE="Años de experiencia"</p>
+        </div>
+    </div>
 </div>
 ```
 
-**Sección Skills (`id="skills"`):**
-Actualiza el JSON con tus tecnologías:
-```json
-{
-  "frontend": {
-    "languages": ["HTML5", "CSS3", "JavaScript"],
-    "frameworks": ["React", "Vue.js"],
-    "tools": ["Webpack", "Sass"]
-  }
-}
-```
-
-**Sección Contact (`id="contact"`):**
-```bash
-echo "Email: tu.email@ejemplo.com"
-echo "GitHub: https://github.com/tuusuario"
-echo "LinkedIn: https://linkedin.com/in/tuperfil"
-```
-
-### 2. Colores y Tema
-Modifica las variables CSS en `assets/css/style.css`:
-```css
-:root {
-    --primary-color: #00ff00;    /* Verde terminal */
-    --secondary-color: #ffff00;  /* Amarillo */
-    --background: #0c0c0c;       /* Negro */
-    --terminal-bg: #1a1a1a;     /* Gris oscuro */
-}
-```
-
-### 3. ASCII Art
-Cambia el logo ASCII en la sección home por el tuyo:
+**Sección Projects:**
 ```html
-<pre class="ascii-art">
- ____   ___  ____ _____ _____ ___  _     ___ ___  
-|  _ \ / _ \|  _ \_   _|  ___/ _ \| |   |_ _/ _ \ 
-| |_) | | | | |_) || | | |_ | | | | |    | | | | |
-|  __/| |_| |  _ < | | |  _|| |_| | |___ | | |_| |
-|_|    \___/|_| \_\|_| |_|   \___/|_____|___\___/
-</pre>
+<div class="project-item" data-tech="tecnologias" data-status="production">
+    <div class="project-header">
+        <span class="permissions">drwxr-xr-x</span>
+        <span class="size">256K</span>
+        <span class="date">2024-01</span>
+        <span class="name">tu-proyecto/</span>
+        <span class="status status-live">🟢 LIVE</span>
+    </div>
+    <div class="project-body">
+        <p class="description">Descripción de tu proyecto</p>
+        <div class="tech-stack">
+            <span class="tech">Tecnología 1</span>
+            <span class="tech">Tecnología 2</span>
+        </div>
+    </div>
+</div>
 ```
 
-## ⌨️ Comandos y Atajos
+**Sección Skills:**
+```html
+<div class="skill-section">
+    <p class="section-header">[Tu Categoría]</p>
+    <div class="skill-list">
+        <p class="skill-line">├── Tecnología........<span class="skill-level expert">[██████████] 90%</span></p>
+    </div>
+</div>
+```
 
-| Comando | Descripción |
-|---------|-------------|
-| `1-5` | Navegar entre secciones |
-| `H` | Mostrar ayuda |
-| `Ctrl+L` | Limpiar terminal |
-| `Ctrl+C` | Interrumpir comando |
-| `Ctrl+Shift+I` | Easter egg para desarrolladores |
+### 3. Comandos Personalizados
 
-### Comandos de Terminal Simulados
-- `cd [sección]` - Navegar a una sección
-- `ls -la` - Listar contenido
-- `cat [archivo]` - Mostrar contenido
-- `help` - Mostrar ayuda
-- `clear` - Limpiar pantalla
+En `assets/js/script.js`, añade comandos personalizados:
 
-## 🎨 Características Técnicas
-
-### HTML
-- Estructura semántica y accesible
-- Uso de data attributes para navegación
-- Formulario de contacto con validación
-
-### CSS
-- Diseño responsive con media queries
-- Animaciones CSS puras (no librerías externas)
-- Efectos de terminal auténticos
-- Scrollbar personalizado
-
-### JavaScript
-- Programación orientada a objetos
-- Navegación SPA (Single Page Application)
-- Historial de comandos dinámico
-- Easter eggs y efectos especiales
-- Validación de formularios
-
-## 🔧 Funcionalidades Avanzadas
-
-### 1. Sistema de Navegación
 ```javascript
-// Navegación por teclado
-const keyCommands = {
-    '1': 'home',
-    '2': 'about', 
-    '3': 'projects',
-    '4': 'skills',
-    '5': 'contact'
+const customCommands = {
+    'tu-comando': 'Respuesta personalizada',
+    'github': 'https://github.com/tuusuario',
+    'linkedin': 'https://linkedin.com/in/tuperfil'
 };
 ```
 
-### 2. Historial de Comandos
-```javascript
-addCommandToHistory(prompt, command, output) {
-    // Simula la ejecución de comandos
-    // Mantiene historial persistente
-}
-```
+## ⌨️ Funcionalidades
 
-### 3. Easter Eggs
-```javascript
-const easterEggs = {
-    'sudo': 'Nice try, but you\'re not root here! 😏',
-    'rm -rf /': 'Access denied. This portfolio is protected! 🛡️',
-    // ... más comandos ocultos
-};
-```
+### Navegación por Teclado
+- `1-5`: Navegar entre secciones
+- `H`: Mostrar ayuda
+- `Ctrl+L`: Limpiar terminal
+- `Ctrl+C`: Interrumpir comando
+
+### Comandos de Terminal
+- `cd [sección]`: Navegar a sección
+- `ls`: Listar contenido
+- `help`: Mostrar ayuda
+- `clear`: Limpiar pantalla
+- `lang [en|es]`: Cambiar idioma
 
 ## 📱 Compatibilidad
 
-- ✅ Chrome 60+
-- ✅ Firefox 55+
-- ✅ Safari 12+
-- ✅ Edge 79+
-- ✅ Dispositivos móviles iOS/Android
-
-## 🤝 Contribuciones
-
-¡Las contribuciones son bienvenidas! Este es un recurso gratuito para la comunidad:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-### Ideas para Contribuir
-- Nuevos temas de colores
-- Más comandos de terminal
-- Efectos visuales adicionales
-- Mejoras en la accesibilidad
-- Traduciones a otros idiomas
+- Chrome 60+
+- Firefox 55+
+- Safari 12+
+- Edge 79+
+- Dispositivos móviles
 
 ## 📄 Licencia
 
-Este proyecto es **completamente gratuito** y está bajo la Licencia MIT. Esto significa que puedes:
-
-- ✅ Usar comercialmente
-- ✅ Modificar
-- ✅ Distribuir
-- ✅ Uso privado
-
-Ver el archivo [LICENSE](LICENSE) para más detalles.
-
-## 🌟 Créditos
-
-Creado con ❤️ para la comunidad de desarrolladores que aman el estilo retro de las terminales.
-
-### Inspiración
-- Terminales Unix/Linux
-- Películas de hackers de los 90s
-- Estética cyberpunk/matrix
-
-## 📞 Soporte
-
-¿Tienes preguntas o necesitas ayuda?
-
-- 🐛 **Reportar bugs**: Abre un issue en GitHub
-- 💡 **Sugerencias**: Comparte tus ideas en las discussions
-- 📧 **Contacto**: [tu-email@ejemplo.com]
-
-## 🚀 Roadmap
-
-### Versión Actual (v1.0)
-- [x] Interfaz básica de terminal
-- [x] Navegación por secciones
-- [x] Diseño responsive
-- [x] Formulario de contacto
-
-### Próximas Versiones
-- [ ] Modo oscuro/claro toggle
-- [ ] Más temas de colores
-- [ ] Integración con APIs
-- [ ] Sistema de plugins
-- [ ] Editor de comandos en vivo
-
----
-
-**¿Te gusta este proyecto?** ⭐ ¡Dale una estrella en GitHub y compártelo con otros desarrolladores!
-
-**¿Lo estás usando?** 📢 ¡Nos encantaría ver tu portfolio! Comparte el enlace con nosotros.
+MIT License - Uso gratuito para proyectos personales y comerciales
