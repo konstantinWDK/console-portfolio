@@ -102,7 +102,7 @@ body {
     min-height: 60px;
     max-height: 400px;
     border-bottom: 1px solid var(--border-color);
-    padding: 10px;
+    padding: 10px 10px 10px 0px ;
     overflow-y: auto;
     display: block;
     flex-shrink: 0;
