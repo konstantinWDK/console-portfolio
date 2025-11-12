@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Current state
     let currentPage = 'home';
     let isTyping = false;
+    let currentLang = localStorage.getItem('portfolioLang') || 'es';
 
     // Typewriter effect configuration
     const typewriterConfig = {
@@ -31,8 +32,52 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // Available commands and pages for autocomplete
-    const availableCommands = ['help', 'clear', 'ls', 'echo', 'cd', 'documentation'];
+    const availableCommands = ['help', 'clear', 'ls', 'echo', 'cd', 'documentation', 'lang'];
     const availablePages = ['home', 'about', 'projects', 'skills', 'contact'];
+
+    // Language translations
+    const translations = {
+        en: {
+            terminalInit: 'Terminal initialized',
+            terminalCleared: 'Terminal cleared',
+            switchedTo: 'Switched to',
+            page: 'page',
+            availableCommands: 'Available commands: cd [page], ls, clear, help, echo [text], documentation, lang [en|es]',
+            commandNotFound: 'command not found',
+            noSuchDirectory: 'No such directory',
+            loadingDocs: 'Loading documentation...',
+            languageChanged: 'Language changed to English',
+            invalidLanguage: 'Invalid language. Use: lang en or lang es'
+        },
+        es: {
+            terminalInit: 'Terminal inicializada',
+            terminalCleared: 'Terminal limpiada',
+            switchedTo: 'Cambiado a',
+            page: 'página',
+            availableCommands: 'Comandos disponibles: cd [página], ls, clear, help, echo [texto], documentation, lang [en|es]',
+            commandNotFound: 'comando no encontrado',
+            noSuchDirectory: 'No existe ese directorio',
+            loadingDocs: 'Cargando documentación...',
+            languageChanged: 'Idioma cambiado a Español',
+            invalidLanguage: 'Idioma inválido. Usa: lang en o lang es'
+        }
+    };
+
+    // Get translation
+    function t(key) {
+        return translations[currentLang][key] || key;
+    }
+
+    // Update page language
+    function updatePageLanguage() {
+        const elements = document.querySelectorAll('[data-lang-en], [data-lang-es]');
+        elements.forEach(el => {
+            const text = el.getAttribute(`data-lang-${currentLang}`);
+            if (text) {
+                el.textContent = text;
+            }
+        });
+    }
 
     // Documentation content
     const documentationBlocks = [
@@ -249,11 +294,12 @@ Min height: 60px | Max height: 400px`
         });
 
         currentPage = pageName;
-        addCommand(`cd ${pageName}`, `Switched to ${pageName} page`);
+        addCommand(`cd ${pageName}`, `${t('switchedTo')} ${pageName} ${t('page')}`);
     }
-    
+
     // Initialize
-    addCommand('clear', 'Terminal initialized');
+    updatePageLanguage(); // Apply language on load
+    addCommand('clear', t('terminalInit'));
     addCommand('ls -la', 'home/ about/ projects/ skills/ contact/');
 
     // Apply typewriter effect to initial page
@@ -287,28 +333,38 @@ Min height: 60px | Max height: 400px`
 
         // Process different commands
         if (cmd === 'help') {
-            addCommand('', 'Available commands: cd [page], ls, clear, help, echo [text], documentation');
+            addCommand('', t('availableCommands'));
         } else if (cmd === 'clear') {
             commandHistory.innerHTML = '';
-            addCommand('clear', 'Terminal cleared');
+            addCommand('clear', t('terminalCleared'));
         } else if (cmd === 'ls' || cmd === 'ls -la') {
             addCommand('', 'home/  about/  projects/  skills/  contact/');
         } else if (cmd === 'documentation' || cmd === 'docs') {
-            addCommand('documentation', 'Loading documentation...');
+            addCommand('documentation', t('loadingDocs'));
             showDocumentation();
+        } else if (cmd.startsWith('lang ')) {
+            const newLang = cmd.substring(5).trim();
+            if (newLang === 'en' || newLang === 'es') {
+                currentLang = newLang;
+                localStorage.setItem('portfolioLang', newLang);
+                updatePageLanguage();
+                addCommand('', t('languageChanged'));
+            } else {
+                addCommand('', t('invalidLanguage'));
+            }
         } else if (cmd.startsWith('cd ')) {
             const page = cmd.substring(3).trim();
             const validPages = ['home', 'about', 'projects', 'skills', 'contact'];
             if (validPages.includes(page)) {
                 navigateToPage(page);
             } else {
-                addCommand('', `cd: ${page}: No such directory`);
+                addCommand('', `cd: ${page}: ${t('noSuchDirectory')}`);
             }
         } else if (cmd.startsWith('echo ')) {
             const text = command.substring(5);
             addCommand('', text);
         } else {
-            addCommand('', `${cmd}: command not found`);
+            addCommand('', `${cmd}: ${t('commandNotFound')}`);
         }
     }
 
