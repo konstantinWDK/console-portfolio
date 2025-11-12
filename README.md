@@ -23,26 +23,10 @@ Plantilla gratuita de portfolio con interfaz de terminal personalizable
 ![Sección de habilidades](https://webdesignerk.com/wp-content/uploads/2025/11/console-portfolio-best-js.png)
 *Habilidades técnicas representadas como niveles de sistema*
 
-## 📁 Estructura del Proyecto
-
-```
-console-portfolio/
-├── assets/
-│   ├── css/
-│   │   └── style.css       # Estilos y temas del terminal
-│   ├── js/
-│   │   └── script.js       # Lógica de navegación e interacciones
-│   └── images/             # Recursos gráficos
-├── index.html              # Estructura principal
-├── .gitignore
-├── LICENSE
-└── README.md
-```
-
 ## 🛠️ Instalación
 
 ```bash
-git clone https://github.com/konstantinWDK/console-portfolio.git
+git clone https://webdesignerk.com/console-portfolio/
 cd console-portfolio
 # Abre index.html en tu navegador
 ```
