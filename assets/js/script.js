@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const commandHistory = document.getElementById('commandHistory');
     const commandInput = document.getElementById('commandInput');
     const resizeHandle = document.getElementById('resizeHandle');
+    const terminal = document.querySelector('.terminal');
+    const themeButtons = document.querySelectorAll('.theme-btn');
 
     console.log('📊 Found elements:', {
         navItems: navItems.length,
@@ -496,6 +498,44 @@ Min height: 60px | Max height: 400px`
             }
         });
     }
+
+    // Theme switcher functionality
+    const currentTheme = localStorage.getItem('portfolioTheme') || 'ubuntu';
+
+    // Apply saved theme on load
+    function applyTheme(theme) {
+        // Remove all theme classes
+        terminal.classList.remove('theme-windows', 'theme-macos', 'theme-matrix');
+
+        // Add new theme class if not ubuntu (default)
+        if (theme !== 'ubuntu') {
+            terminal.classList.add('theme-' + theme);
+        }
+
+        // Update active button
+        themeButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-theme') === theme) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Save to localStorage
+        localStorage.setItem('portfolioTheme', theme);
+    }
+
+    // Apply saved theme
+    applyTheme(currentTheme);
+
+    // Theme button event listeners
+    themeButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent focus on command input
+            const theme = this.getAttribute('data-theme');
+            applyTheme(theme);
+            console.log('🎨 Theme changed to:', theme);
+        });
+    });
 
     console.log('✅ Initialization complete!');
 });

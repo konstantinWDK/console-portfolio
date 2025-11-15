@@ -145,6 +145,45 @@ body {
     text-align: center;
 }
 
+.theme-switcher {
+    display: flex;
+    gap: 4px;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.theme-switcher:hover {
+    opacity: 1;
+}
+
+.theme-btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-muted);
+    font-size: 9px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    font-family: 'Courier New', monospace;
+}
+
+.theme-btn:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.theme-btn.active {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    border-color: var(--text-primary);
+}
+
 
 .terminal-body {
     flex: 1;
